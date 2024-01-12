@@ -1,0 +1,133 @@
+#include <iostream>
+#ifndef QUEUE_H
+#define QUEUE_H
+using namespace std;
+
+
+class Queue
+{
+	private:
+		
+		int front, back;
+		int array[5];
+		bool full = false;
+		
+		struct node
+		{
+			int data;
+			node *next;
+		};
+		
+		node *first, *end;
+			
+	public:
+	
+		Queue()
+		{
+			first = nullptr;
+			end = nullptr;
+			back = -1;
+			front = -1;
+		}
+		
+		void enqueueArray(int data)
+		{
+			if(full == true)
+			{
+				cout << "Queue is full";
+			}
+			else if( front == -1)
+			{
+				front++;
+				back++;
+				array[back] = data;
+			}
+			else
+			{
+				back++;
+				array[back] = data;
+			}
+			
+			if(back == 5)
+			{
+				full = true;
+			}
+		}
+		
+		void dataFront()
+		{
+			if(front == -1)
+			{
+				cout << "Queue is empty";
+			}
+			else
+			{
+			cout << "Data at front of queue: " << array[front];
+			}
+		}
+		
+		void dequeArray()
+		{
+			if(front == -1)
+			{
+				cout << "Queue is empty";
+			}
+			else
+			{
+				for(int i = -1; i < back -1; i++)
+				{
+					array[i] = array[i + 1];
+				}
+				back--;
+			}
+		}
+		
+		void enqueueLL(int data)
+		{
+			node *temp = new node;
+			temp->data = data;
+			temp->next = end;
+			
+			if(first == nullptr)
+			{
+				first = temp;
+				end = temp;
+			}
+			else
+			{
+				end->next = temp;
+				end = end->next;
+			}
+		}
+		
+		void dequeueLL()
+		{
+			if(first == nullptr)
+			{
+				cout << "Queue is Empty";
+			}
+			else
+			{
+					node * temp = new node;
+					temp = first;
+					first = temp->next;
+					delete temp;
+			}
+		}
+		
+		void frontLL()
+		{
+			if(first == nullptr)
+			{
+				cout << "Queue LL is empty";
+			}
+			else
+			{
+				cout << "Front of Queue LL: " << first->data;
+			}
+			
+		}
+			
+};
+
+#endif
