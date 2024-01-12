@@ -1,0 +1,25 @@
+#include <iostream>
+#include "Queue.h"
+using namespace std;
+
+int main()
+{
+	Queue x;
+	
+	x.enqueueArray(5);
+	x.enqueueArray(4);
+	x.dataFront();
+	cout << endl;
+	x.dequeArray();
+	x.dataFront();
+	cout << endl;
+	
+	x.enqueueLL(5);
+	x.enqueueLL(4);
+	x.frontLL();
+	cout << endl;
+	x.dequeueLL();
+	x.frontLL();
+	
+	return 0;
+}
